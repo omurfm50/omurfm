@@ -13,6 +13,14 @@ export const RADIO_CONFIG = {
     scriptUrl: "https://cdn.cloud.caster.fm/widgets/embed.js"
   },
 
+  chat: {
+    iframeUrl: "https://chameleon.chattersnet.nl/chat/14873",
+    userCountUrl:
+      "https://chameleon.chattersnet.nl/api/usercount.php?channel=OmurFm",
+    roomName: "Ömür FM Ana Oda",
+    channelName: "OmurFm"
+  },
+
   requestWhatsapp: "",
   instagramUrl: "",
   facebookUrl: "",

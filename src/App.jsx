@@ -41,7 +41,7 @@ function App() {
             <li>Tekrarlayan mesaj, reklam ve rahatsız edici içerik göndermeyin.</li>
             <li>Müzik istekleri için Şarkı İste alanını kullanın.</li>
           </ol>
-          <p className="border-l-2 border-rose-500 bg-rose-950/25 px-4 py-3 text-sm text-rose-100">Gerçek sohbet sistemi devreye alındığında oda yönetimi bu kuralları uygulayacaktır.</p>
+          <p className="border-l-2 border-rose-500 bg-rose-950/25 px-4 py-3 text-sm text-rose-100">Oda yönetimi, herkes için huzurlu bir ortam sağlamak amacıyla bu kuralları uygular.</p>
         </div>
       </Modal>
     </div>
