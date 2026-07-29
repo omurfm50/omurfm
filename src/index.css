@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+.caster-widget-shell,
+.caster-widget-container,
+.cstrEmbed {
+  width: 100%;
+  max-width: 100%;
+}
+
+.cstrEmbed {
+  overflow: hidden;
+}
+
+.cstrEmbed iframe {
+  display: block;
+  width: 100% !important;
+  max-width: 100%;
+  border: 0;
+}
