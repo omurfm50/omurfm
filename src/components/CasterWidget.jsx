@@ -36,6 +36,7 @@ function CasterWidget() {
 
     const markRendered = () => {
       if (cancelled) return
+      container.querySelector('iframe')?.setAttribute('title', 'Ömür FM canlı yayın oynatıcısı')
       clearWatchers()
       setStatus('rendered')
     }

@@ -1,17 +1,8 @@
+import { LogIn, Menu, Radio, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { Headphones, Menu, Radio, X } from 'lucide-react'
 import { RADIO_CONFIG } from '../config/radio.js'
 
-const NAV_ITEMS = [
-  { label: 'Ana Sayfa', href: '#ana-sayfa' },
-  { label: 'Canlı Yayın', href: '#canli-yayin' },
-  { label: 'DJ Kadrosu', href: '#dj-kadrosu' },
-  { label: 'Yayın Akışı', href: '#yayin-akisi' },
-  { label: 'Sohbet', href: '#sohbet' },
-  { label: 'İletişim', href: '#iletisim' },
-]
-
-function Header() {
+function Header({ onOpenSchedule, onOpenDjs }) {
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
@@ -26,54 +17,43 @@ function Header() {
     }
   }, [isOpen])
 
+  const closeMenu = () => setIsOpen(false)
+  const openFromMenu = (openModal) => {
+    closeMenu()
+    openModal()
+  }
+
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#0b0608]/85 backdrop-blur-xl">
-      <div className="mx-auto flex h-18 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <a href="#ana-sayfa" className="flex items-center gap-3 rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300">
-          <span className="grid size-10 place-items-center rounded-xl border border-amber-300/30 bg-gradient-to-br from-rose-700 to-[#380914] shadow-lg shadow-rose-950/50">
-            <Radio size={20} aria-hidden="true" />
-          </span>
-          <span className="text-lg font-bold tracking-wide text-white">{RADIO_CONFIG.name}</span>
+    <header className="sticky top-0 z-50 border-b border-white/[0.08] bg-[#080406]/95 backdrop-blur-xl">
+      <div className="mx-auto flex h-14 max-w-[1240px] items-center justify-between px-4 sm:px-6">
+        <a href="#top" className="flex items-center gap-2.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300">
+          <span className="grid size-8 place-items-center bg-rose-700 text-white"><Radio size={17} aria-hidden="true" /></span>
+          <span className="font-bold tracking-wide text-white">{RADIO_CONFIG.name}</span>
         </a>
 
-        <nav className="hidden items-center gap-6 lg:flex" aria-label="Ana menü">
-          {NAV_ITEMS.map((item) => (
-            <a key={item.href} href={item.href} className="text-sm text-stone-300 transition hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300">
-              {item.label}
-            </a>
-          ))}
+        <nav className="hidden items-center gap-5 lg:flex" aria-label="Ana menü">
+          <a href="#ana-oda" className="text-sm text-stone-300 transition hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300">Ana Oda</a>
+          <a href="#canli-yayin" className="text-sm text-stone-300 transition hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300">Canlı Yayın</a>
+          <button type="button" onClick={onOpenSchedule} className="text-sm text-stone-300 transition hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300">Yayın Akışı</button>
+          <button type="button" onClick={onOpenDjs} className="text-sm text-stone-300 transition hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300">DJ Kadrosu</button>
+          <a href="#hakkimizda" className="text-sm text-stone-300 transition hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300">Hakkımızda</a>
+          <button type="button" disabled title="Üyelik sistemi yakında" className="inline-flex cursor-not-allowed items-center gap-2 border border-white/10 px-3 py-2 text-sm text-stone-500"><LogIn size={15} aria-hidden="true" /> Giriş Yap</button>
         </nav>
 
-        <div className="flex items-center gap-2">
-          <a href="#canli-yayin" className="hidden items-center gap-2 rounded-full bg-rose-700 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-rose-950/40 transition hover:bg-rose-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300 sm:flex">
-            <Headphones size={17} aria-hidden="true" />
-            Canlı Dinle
-          </a>
-          <button
-            type="button"
-            className="grid size-11 place-items-center rounded-xl border border-white/10 bg-white/5 transition hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300 lg:hidden"
-            aria-label={isOpen ? 'Menüyü kapat' : 'Menüyü aç'}
-            aria-expanded={isOpen}
-            aria-controls="mobile-menu"
-            onClick={() => setIsOpen((open) => !open)}
-          >
-            {isOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
-          </button>
-        </div>
+        <button type="button" onClick={() => setIsOpen((open) => !open)} aria-label={isOpen ? 'Menüyü kapat' : 'Menüyü aç'} aria-expanded={isOpen} aria-controls="mobile-menu" className="grid size-10 place-items-center border border-white/10 text-stone-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300 lg:hidden">
+          {isOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
+        </button>
       </div>
 
       {isOpen && (
-        <div id="mobile-menu" className="fixed inset-x-0 top-18 h-[calc(100vh-4.5rem)] border-t border-white/10 bg-[#0b0608] px-5 py-6 lg:hidden">
-          <nav className="mx-auto flex max-w-7xl flex-col" aria-label="Mobil menü">
-            {NAV_ITEMS.map((item) => (
-              <a key={item.href} href={item.href} onClick={() => setIsOpen(false)} className="border-b border-white/10 py-4 text-lg text-stone-200 transition hover:text-amber-200 focus-visible:outline-2 focus-visible:outline-amber-300">
-                {item.label}
-              </a>
-            ))}
-            <a href="#canli-yayin" onClick={() => setIsOpen(false)} className="mt-6 flex items-center justify-center gap-2 rounded-full bg-rose-700 px-5 py-3 font-semibold focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300">
-              <Headphones size={18} aria-hidden="true" />
-              Canlı Dinle
-            </a>
+        <div id="mobile-menu" className="fixed inset-x-0 top-14 h-[calc(100vh-3.5rem)] border-t border-white/[0.08] bg-[#080406] px-5 py-4 lg:hidden">
+          <nav className="mx-auto flex max-w-[1240px] flex-col" aria-label="Mobil menü">
+            <a href="#ana-oda" onClick={closeMenu} className="border-b border-white/[0.08] py-3.5 text-base text-stone-200 focus-visible:outline-2 focus-visible:outline-amber-300">Ana Oda</a>
+            <a href="#canli-yayin" onClick={closeMenu} className="border-b border-white/[0.08] py-3.5 text-base text-stone-200 focus-visible:outline-2 focus-visible:outline-amber-300">Canlı Yayın</a>
+            <button type="button" onClick={() => openFromMenu(onOpenSchedule)} className="border-b border-white/[0.08] py-3.5 text-left text-base text-stone-200 focus-visible:outline-2 focus-visible:outline-amber-300">Yayın Akışı</button>
+            <button type="button" onClick={() => openFromMenu(onOpenDjs)} className="border-b border-white/[0.08] py-3.5 text-left text-base text-stone-200 focus-visible:outline-2 focus-visible:outline-amber-300">DJ Kadrosu</button>
+            <a href="#hakkimizda" onClick={closeMenu} className="border-b border-white/[0.08] py-3.5 text-base text-stone-200 focus-visible:outline-2 focus-visible:outline-amber-300">Hakkımızda</a>
+            <button type="button" disabled className="mt-4 inline-flex cursor-not-allowed items-center justify-center gap-2 border border-white/10 px-4 py-3 text-stone-500"><LogIn size={17} aria-hidden="true" /> Giriş Yap · Yakında</button>
           </nav>
         </div>
       )}

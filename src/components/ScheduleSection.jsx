@@ -5,14 +5,14 @@ import SectionTitle from './SectionTitle.jsx'
 
 const DAYS = Object.keys(SCHEDULE)
 
-function ScheduleSection() {
+function ScheduleSection({ compact = false }) {
   const [selectedDay, setSelectedDay] = useState('Pazartesi')
 
   return (
-    <section id="yayin-akisi" className="scroll-mt-24 border-y border-white/[0.06] bg-[#0c0709] px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+    <section id={compact ? undefined : 'yayin-akisi'} className={compact ? '' : 'scroll-mt-24 border-y border-white/[0.06] bg-[#0c0709] px-4 py-20 sm:px-6 lg:px-8 lg:py-28'}>
       <div className="mx-auto max-w-7xl">
-        <div className="flex justify-center"><SectionTitle eyebrow="Haftalık Program" title="Yayın Akışı" description="Haftanın her günü için hazırladığımız programları keşfedin." /></div>
-        <div className="mt-10 flex flex-wrap justify-center gap-2" role="tablist" aria-label="Yayın günleri">
+        {!compact && <div className="flex justify-center"><SectionTitle eyebrow="Haftalık Program" title="Yayın Akışı" description="Haftanın her günü için hazırladığımız programları keşfedin." /></div>}
+        <div className={`${compact ? '' : 'mt-10'} flex flex-wrap justify-center gap-2`} role="tablist" aria-label="Yayın günleri">
           {DAYS.map((day) => (
             <button
               key={day}
