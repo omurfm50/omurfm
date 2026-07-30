@@ -17,3 +17,32 @@
   max-width: 100%;
   border: 0;
 }
+
+.now-playing-marquee__track {
+  display: flex;
+  width: max-content;
+  animation: now-playing-scroll 16s linear infinite;
+}
+
+.now-playing-marquee__track > span {
+  min-width: 322px;
+  padding-inline: 1.5rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@keyframes now-playing-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .now-playing-marquee__track {
+    animation: none;
+  }
+
+  .now-playing-marquee__track > span[aria-hidden='true'] {
+    display: none;
+  }
+}

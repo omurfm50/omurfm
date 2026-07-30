@@ -1,7 +1,10 @@
 import { Heart, Mic2, Music2, Radio, Sparkles } from 'lucide-react'
 import { RADIO_CONFIG } from '../config/radio.js'
+import { useRadioMetadata } from '../hooks/useNowPlaying.js'
 
 function RadioBanner() {
+  const { currentDj } = useRadioMetadata()
+
   return (
     <section id="top" aria-labelledby="radio-banner-title" className="relative min-h-[220px] overflow-hidden border-x border-b border-white/[0.08] bg-[#19070d] sm:min-h-[250px]">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_30%,rgba(225,29,72,0.25),transparent_28%),radial-gradient(circle_at_82%_55%,rgba(251,191,36,0.09),transparent_24%),linear-gradient(120deg,rgba(0,0,0,0.15),rgba(69,10,29,0.5),rgba(0,0,0,0.45))]" />
@@ -22,7 +25,7 @@ function RadioBanner() {
           <span className="grid size-12 shrink-0 place-items-center border border-white/10 bg-rose-900/50 text-rose-200"><Mic2 size={23} aria-hidden="true" /></span>
           <div>
             <p className="text-xs uppercase tracking-[0.18em] text-amber-200">Yayındaki DJ</p>
-            <p className="mt-1 font-semibold text-white">{RADIO_CONFIG.currentDj.name}</p>
+            <p className="mt-1 font-semibold text-white">{currentDj}</p>
             <p className="text-sm text-stone-400">{RADIO_CONFIG.currentDj.show}</p>
           </div>
         </div>
