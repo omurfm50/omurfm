@@ -59,6 +59,16 @@ export function useRadioPlayer() {
     setVolume(volume > 0 ? 0 : previousVolume || 0.7)
   }, [previousVolume, setVolume, volume])
 
+  const stop = useCallback(() => {
+    if (!audioRef.current) return
+    audioRef.current.pause()
+    audioRef.current.removeAttribute('src')
+    audioRef.current.load()
+    audioRef.current = null
+    setIsPlaying(false)
+    setError('')
+  }, [])
+
   const retry = useCallback(async () => {
     if (audioRef.current) {
       audioRef.current.pause()
@@ -81,5 +91,5 @@ export function useRadioPlayer() {
     }
   }, [])
 
-  return { isOnline, isPlaying, volume, error, togglePlay, setVolume, toggleMute, retry }
+  return { isOnline, isPlaying, volume, error, togglePlay, stop, setVolume, toggleMute, retry }
 }

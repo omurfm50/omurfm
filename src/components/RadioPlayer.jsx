@@ -1,51 +1,61 @@
-import { Pause, Play, Radio, RefreshCw, Volume2, VolumeX } from 'lucide-react'
+import { Play, Radio, RefreshCw, Square, Volume2, VolumeX } from 'lucide-react'
 import { RADIO_CONFIG } from '../config/radio.js'
 import { useRadioPlayer } from '../hooks/useRadioPlayer.js'
 import CasterWidget from './CasterWidget.jsx'
 
 function Html5Player() {
-  const { isPlaying, volume, error, togglePlay, setVolume, toggleMute, retry } = useRadioPlayer()
+  const { isPlaying, volume, error, togglePlay, stop, setVolume, toggleMute, retry } = useRadioPlayer()
 
   return (
-    <div className="p-5 sm:p-7">
-      <div className="my-7 flex h-14 items-end justify-center gap-1.5" aria-hidden="true">
-        {[40, 75, 55, 90, 65, 45, 80, 58, 95, 68, 48, 72, 42, 84, 55, 70, 38, 62].map((height, index) => (
-          <span
-            key={`${height}-${index}`}
-            className={`w-1 rounded-full bg-gradient-to-t from-rose-800 to-amber-300/90 ${isPlaying ? 'animate-pulse motion-reduce:animate-none' : 'opacity-45'}`}
-            style={{ height: `${isPlaying ? height : Math.max(18, height / 2)}%`, animationDelay: `${index * 70}ms` }}
-          />
-        ))}
-      </div>
-      <div className="flex items-center gap-4">
+    <div className="mx-auto w-full max-w-[322px]">
+      <div className="flex h-9 items-center gap-1 rounded-full border border-black bg-[linear-gradient(#777_0%,#292929_42%,#080808_55%,#303030_100%)] p-0.5 font-sans shadow-[inset_0_1px_0_rgba(255,255,255,.48),inset_0_-2px_3px_rgba(0,0,0,.9),0_1px_2px_#000]">
         <button
           type="button"
           onClick={togglePlay}
           aria-label={isPlaying ? 'Yayını duraklat' : 'Yayını oynat'}
-          className="grid size-14 shrink-0 place-items-center rounded-full bg-gradient-to-br from-rose-600 to-rose-800 text-white shadow-lg shadow-rose-950/60 transition hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300 motion-reduce:transition-none"
+          aria-pressed={isPlaying}
+          className={`flex h-[29px] w-[82px] shrink-0 items-center justify-center gap-1.5 rounded-full border border-neutral-900 bg-[linear-gradient(#626262_0%,#262626_46%,#050505_54%,#353535_100%)] px-2 text-[10px] font-bold tracking-[0.24em] text-green-300 shadow-[inset_0_1px_1px_rgba(255,255,255,.42),inset_0_-2px_2px_rgba(0,0,0,.85)] transition hover:brightness-125 focus-visible:outline-1 focus-visible:outline-green-300 ${isPlaying ? 'brightness-125' : ''}`}
         >
-          {isPlaying ? <Pause fill="currentColor" aria-hidden="true" /> : <Play className="translate-x-0.5" fill="currentColor" aria-hidden="true" />}
+          PLAY <Play size={13} fill="currentColor" aria-hidden="true" />
         </button>
-        <button type="button" onClick={toggleMute} aria-label={volume === 0 ? 'Sesi aç' : 'Sesi kapat'} className="rounded-lg p-2 text-stone-300 transition hover:text-white focus-visible:outline-2 focus-visible:outline-amber-300">
-          {volume === 0 ? <VolumeX size={21} aria-hidden="true" /> : <Volume2 size={21} aria-hidden="true" />}
+
+        <button
+          type="button"
+          onClick={stop}
+          aria-label="Yayını durdur"
+          className="flex h-[29px] w-[82px] shrink-0 items-center justify-center gap-1.5 rounded-full border border-neutral-900 bg-[linear-gradient(#626262_0%,#262626_46%,#050505_54%,#353535_100%)] px-2 text-[10px] font-bold tracking-[0.24em] text-red-400 shadow-[inset_0_1px_1px_rgba(255,255,255,.42),inset_0_-2px_2px_rgba(0,0,0,.85)] transition hover:brightness-125 focus-visible:outline-1 focus-visible:outline-red-400"
+        >
+          STOP <Square size={11} fill="currentColor" aria-hidden="true" />
         </button>
-        <label className="sr-only" htmlFor="volume">Ses seviyesi</label>
-        <input
-          id="volume"
-          type="range"
-          min="0"
-          max="1"
-          step="0.01"
-          value={volume}
-          onChange={(event) => setVolume(event.target.value)}
-          className="h-1.5 min-w-0 flex-1 cursor-pointer accent-rose-600"
-          aria-valuetext={`Yüzde ${Math.round(volume * 100)}`}
-        />
+
+        <button
+          type="button"
+          onClick={toggleMute}
+          aria-label={volume === 0 ? 'Sesi aç' : 'Sesi kapat'}
+          className="grid size-7 shrink-0 place-items-center rounded-full text-sky-200 transition hover:text-white focus-visible:outline-1 focus-visible:outline-sky-200"
+        >
+          {volume === 0 ? <VolumeX size={16} aria-hidden="true" /> : <Volume2 size={16} aria-hidden="true" />}
+        </button>
+
+        <label className="flex min-w-0 flex-1 items-center">
+          <span className="sr-only">Ses seviyesi</span>
+          <input
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            value={volume}
+            onChange={(event) => setVolume(event.target.value)}
+            className="mr-2 h-1.5 min-w-0 flex-1 cursor-pointer accent-neutral-200"
+            aria-valuetext={`Yüzde ${Math.round(volume * 100)}`}
+          />
+        </label>
       </div>
+
       {error && (
-        <div className="mt-5 flex flex-col items-center justify-between gap-3 rounded-xl border border-rose-400/20 bg-rose-950/30 px-4 py-3 sm:flex-row">
+        <div className="mt-2 flex flex-col items-center justify-between gap-2 rounded-xl border border-rose-400/20 bg-rose-950/80 px-3 py-2 sm:flex-row">
           <p className="text-sm text-rose-200">{error}</p>
-          <button type="button" onClick={retry} aria-label="Ses yayınını yeniden yükle" className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold text-white transition hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-amber-300">
+          <button type="button" onClick={retry} aria-label="Ses yayınını yeniden yükle" className="flex items-center gap-2 rounded-lg px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-amber-300">
             <RefreshCw size={15} aria-hidden="true" /> Yeniden Dene
           </button>
         </div>
@@ -57,6 +67,8 @@ function Html5Player() {
 function RadioPlayer() {
   const hasStream = Boolean(RADIO_CONFIG.streamUrl.trim())
   const hasCasterWidget = Boolean(RADIO_CONFIG.casterWidget.publicToken.trim())
+
+  if (hasStream) return <Html5Player />
 
   return (
     <div className="relative w-full overflow-hidden rounded-[2rem] border border-amber-200/15 bg-black/45 shadow-2xl shadow-black/50 backdrop-blur-xl">
@@ -71,14 +83,12 @@ function RadioPlayer() {
         </div>
       </div>
 
-      {hasStream && <Html5Player />}
-      {!hasStream && hasCasterWidget && (
+      {hasCasterWidget ? (
         <div className="p-3 sm:p-4">
           <CasterWidget />
           <p className="px-2 pb-1 pt-4 text-center text-xs leading-5 text-stone-400">Yayını başlatmak için oynatıcının içindeki oynat düğmesine dokunun.</p>
         </div>
-      )}
-      {!hasStream && !hasCasterWidget && (
+      ) : (
         <p className="m-5 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-8 text-center text-sm text-stone-400">Yayın bağlantısı henüz eklenmedi.</p>
       )}
     </div>
