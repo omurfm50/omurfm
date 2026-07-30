@@ -1,10 +1,12 @@
 import { Play, Radio, RefreshCw, Square, Volume2, VolumeX } from 'lucide-react'
 import { RADIO_CONFIG } from '../config/radio.js'
+import { useNowPlaying } from '../hooks/useNowPlaying.js'
 import { useRadioPlayer } from '../hooks/useRadioPlayer.js'
 import CasterWidget from './CasterWidget.jsx'
 
 function Html5Player() {
   const { isPlaying, volume, error, togglePlay, stop, setVolume, toggleMute, retry } = useRadioPlayer()
+  const nowPlaying = useNowPlaying()
 
   return (
     <div className="mx-auto w-full max-w-[322px]">
@@ -50,6 +52,13 @@ function Html5Player() {
             aria-valuetext={`Yüzde ${Math.round(volume * 100)}`}
           />
         </label>
+      </div>
+
+      <div className="now-playing-marquee mt-1.5 overflow-hidden rounded-full border border-white/10 bg-black/65 py-1 text-[11px] font-semibold text-amber-200" aria-live="polite" aria-label={`Çalan şarkı: ${nowPlaying}`}>
+        <span className="now-playing-marquee__track">
+          <span>♫ {nowPlaying}</span>
+          <span aria-hidden="true">♫ {nowPlaying}</span>
+        </span>
       </div>
 
       {error && (

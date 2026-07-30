@@ -3,6 +3,7 @@ export const RADIO_CONFIG = {
   slogan: "Kalplerin Buluştuğu Radyo",
 
   streamUrl: "https://sapircast.caster.fm:17681/BHufv?token=3ec856e02e682b10b5907facd25efed4",
+  metadataUrl: "https://sapircast.caster.fm:17681/status-json.xsl?token=3ec856e02e682b10b5907facd25efed4",
 
   casterWidget: {
     publicToken: "79ea291b-69b6-42ba-a9e7-378a6c72cc54",
