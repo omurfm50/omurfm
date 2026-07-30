@@ -4,18 +4,9 @@ import { RADIO_CONFIG } from '../config/radio.js'
 const REFRESH_INTERVAL_MS = 15000
 const FALLBACK_TEXT = 'Canlı yayında şarkı bilgisi bekleniyor'
 
-function getSource(payload) {
-  const rawSources = payload?.icestats?.source
-  const sources = Array.isArray(rawSources) ? rawSources : rawSources ? [rawSources] : []
-  const mountpoint = new URL(RADIO_CONFIG.streamUrl).pathname.toLowerCase()
-
-  return sources.find((item) => item?.listenurl?.toLowerCase().includes(mountpoint)) ?? sources[0]
-}
-
 function getRadioMetadata(payload) {
-  const source = getSource(payload)
-  const trackTitle = typeof source?.title === 'string' ? source.title.trim() : ''
-  const djName = typeof source?.server_name === 'string' ? source.server_name.trim() : ''
+  const trackTitle = typeof payload?.nowPlaying === 'string' ? payload.nowPlaying.trim() : ''
+  const djName = typeof payload?.currentDj === 'string' ? payload.currentDj.trim() : ''
 
   return {
     nowPlaying: trackTitle || FALLBACK_TEXT,
