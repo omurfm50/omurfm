@@ -4,7 +4,6 @@ import Footer from './components/Footer.jsx'
 import Header from './components/Header.jsx'
 import Modal from './components/Modal.jsx'
 import RadioBanner from './components/RadioBanner.jsx'
-import RadioStatusBar from './components/RadioStatusBar.jsx'
 import RoomLayout from './components/RoomLayout.jsx'
 import ScheduleSection from './components/ScheduleSection.jsx'
 import StickyRadioBar from './components/StickyRadioBar.jsx'
@@ -20,7 +19,6 @@ function App() {
 
       <main id="main-content" className="mx-auto w-full max-w-[1240px] px-3 sm:px-5">
         <RadioBanner />
-        <RadioStatusBar />
         <RoomLayout onOpenRules={() => setActiveModal('rules')} />
         <StickyRadioBar />
       </main>
