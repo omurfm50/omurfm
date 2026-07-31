@@ -1,6 +1,5 @@
 import { useCallback, useState } from 'react'
 import DjSection from './components/DjSection.jsx'
-import Footer from './components/Footer.jsx'
 import Header from './components/Header.jsx'
 import Modal from './components/Modal.jsx'
 import RadioBanner from './components/RadioBanner.jsx'
@@ -22,8 +21,6 @@ function App() {
         <RoomLayout onOpenRules={() => setActiveModal('rules')} />
         <StickyRadioBar />
       </main>
-      <Footer />
-
       <Modal isOpen={activeModal === 'djs'} onClose={closeModal} eyebrow="Mikrofonun Arkasındakiler" title="DJ Kadrosu">
         <DjSection compact />
       </Modal>
