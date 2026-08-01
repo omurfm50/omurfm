@@ -10,6 +10,8 @@ const MOBILE_FRAME_HEIGHT = 187
 const DESKTOP_FRAME_HEIGHT = 170
 const MOBILE_HORIZONTAL_PADDING = 6
 const MOBILE_BAR_HEIGHT = 32
+const MOBILE_PLAY_SCALE = 0.6
+const MOBILE_PLAY_BUTTON_RIGHT = 784
 
 function sizeWidgetContainer(element, mobile) {
   if (!element) return
@@ -36,7 +38,7 @@ function CasterWidget() {
   const containerRef = useRef(null)
   const [status, setStatus] = useState('loading')
   const [attempt, setAttempt] = useState(0)
-  const [mobileLayout, setMobileLayout] = useState({ active: false, scale: 1 })
+  const [mobileLayout, setMobileLayout] = useState({ active: false, scale: 1, left: 0 })
   const nowPlaying = useNowPlaying()
 
   useEffect(() => {
@@ -45,10 +47,12 @@ function CasterWidget() {
 
     const fitMobilePlayer = () => {
       const active = window.innerWidth < 640
-      const availableWidth = Math.max(0, shell.clientWidth - MOBILE_HORIZONTAL_PADDING * 2)
-      const scale = active ? Math.min(1, availableWidth / MOBILE_FRAME_WIDTH) : 1
+      const scale = active ? MOBILE_PLAY_SCALE : 1
+      const left = active
+        ? shell.clientWidth - MOBILE_HORIZONTAL_PADDING - MOBILE_PLAY_BUTTON_RIGHT * scale
+        : 0
       sizeWidgetContainer(containerRef.current, active)
-      setMobileLayout({ active, scale })
+      setMobileLayout({ active, scale, left })
     }
 
     fitMobilePlayer()
@@ -203,7 +207,7 @@ function CasterWidget() {
           ref={containerRef}
           className="cstrEmbed absolute left-0 top-0 !h-[187px] !w-[800px] origin-top-left [&_iframe]:!h-[187px] [&_iframe]:!w-[800px] [&_iframe]:!max-w-none sm:inset-x-0 sm:bottom-1 sm:top-auto sm:!h-[170px] sm:!w-full sm:[&_iframe]:!h-[170px] sm:[&_iframe]:!w-full"
           style={mobileLayout.active ? {
-            left: MOBILE_HORIZONTAL_PADDING,
+            left: mobileLayout.left,
             top: MOBILE_BAR_HEIGHT - MOBILE_FRAME_HEIGHT * mobileLayout.scale,
             transform: `scale(${mobileLayout.scale})`,
           } : undefined}
@@ -219,7 +223,7 @@ function CasterWidget() {
           <div className="pointer-events-none absolute inset-y-0 left-0 z-20 flex w-[68px] items-center justify-center bg-[#686868] text-[8px] font-bold italic text-white shadow-[inset_0_1px_0_rgba(255,255,255,.22)] sm:hidden" aria-hidden="true">
             Caster<span className="rounded-sm bg-rose-600 px-0.5 text-white">.fm</span>
           </div>
-          <div className="pointer-events-none absolute inset-y-0 left-[68px] right-[65px] z-20 flex items-center overflow-hidden bg-[#5f5f5f] text-[8px] font-semibold leading-[11px] text-amber-100 shadow-[inset_0_1px_0_rgba(255,255,255,.18)] sm:inset-y-auto sm:bottom-auto sm:left-1/2 sm:right-auto sm:top-[56%] sm:block sm:w-[34%] sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-full sm:bg-[#171717]/90 sm:py-1 sm:text-xs sm:leading-normal sm:shadow-[0_0_14px_rgba(0,0,0,.55)]" aria-live="polite" aria-label={`Çalan şarkı: ${nowPlaying}`}>
+          <div className="pointer-events-none absolute inset-y-0 left-[68px] right-[82px] z-20 flex items-center overflow-hidden bg-[#5f5f5f] text-[8px] font-semibold leading-[11px] text-amber-100 shadow-[inset_0_1px_0_rgba(255,255,255,.18)] sm:inset-y-auto sm:bottom-auto sm:left-1/2 sm:right-auto sm:top-[56%] sm:block sm:w-[34%] sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-full sm:bg-[#171717]/90 sm:py-1 sm:text-xs sm:leading-normal sm:shadow-[0_0_14px_rgba(0,0,0,.55)]" aria-live="polite" aria-label={`Çalan şarkı: ${nowPlaying}`}>
             <span className="now-playing-marquee__track">
               <span>♫ {nowPlaying}</span>
               <span aria-hidden="true">♫ {nowPlaying}</span>
