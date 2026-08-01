@@ -5,12 +5,6 @@ export const RADIO_CONFIG = {
   streamUrl: "",
   metadataUrl: "/api/radio-status",
 
-  flatcast: {
-    iframeUrl: "https://flatcastx.com/sid/1567",
-    width: 800,
-    height: 600
-  },
-
   casterWidget: {
     publicToken: "79ea291b-69b6-42ba-a9e7-378a6c72cc54",
     type: "newStreamPlayer",
