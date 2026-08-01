@@ -32,6 +32,7 @@ function Header({ onOpenSchedule, onOpenDjs }) {
         </a>
 
         <nav className="hidden items-center gap-5 lg:flex" aria-label="Ana menü">
+          <a href="#ana-oda" className="text-sm text-stone-300 transition hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300">Ana Oda</a>
           <a href="#canli-yayin" className="text-sm text-stone-300 transition hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300">Canlı Yayın</a>
           <button type="button" onClick={onOpenSchedule} className="text-sm text-stone-300 transition hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300">Yayın Akışı</button>
           <button type="button" onClick={onOpenDjs} className="text-sm text-stone-300 transition hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300">DJ Kadrosu</button>
@@ -47,6 +48,7 @@ function Header({ onOpenSchedule, onOpenDjs }) {
       {isOpen && (
         <div id="mobile-menu" className="fixed inset-x-0 top-14 h-[calc(100vh-3.5rem)] border-t border-white/[0.08] bg-[#080406] px-5 py-4 lg:hidden">
           <nav className="mx-auto flex max-w-[1240px] flex-col" aria-label="Mobil menü">
+            <a href="#ana-oda" onClick={closeMenu} className="border-b border-white/[0.08] py-3.5 text-base text-stone-200 focus-visible:outline-2 focus-visible:outline-amber-300">Ana Oda</a>
             <a href="#canli-yayin" onClick={closeMenu} className="border-b border-white/[0.08] py-3.5 text-base text-stone-200 focus-visible:outline-2 focus-visible:outline-amber-300">Canlı Yayın</a>
             <button type="button" onClick={() => openFromMenu(onOpenSchedule)} className="border-b border-white/[0.08] py-3.5 text-left text-base text-stone-200 focus-visible:outline-2 focus-visible:outline-amber-300">Yayın Akışı</button>
             <button type="button" onClick={() => openFromMenu(onOpenDjs)} className="border-b border-white/[0.08] py-3.5 text-left text-base text-stone-200 focus-visible:outline-2 focus-visible:outline-amber-300">DJ Kadrosu</button>
