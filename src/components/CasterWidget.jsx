@@ -7,6 +7,16 @@ const SCRIPT_ID = 'caster-fm-widget-script'
 const RENDER_TIMEOUT_MS = 12000
 const MOBILE_FRAME_WIDTH = 800
 const MOBILE_FRAME_HEIGHT = 170
+const MOBILE_HORIZONTAL_PADDING = 6
+
+function sizeWidgetContainer(element, mobile) {
+  if (!element) return
+
+  element.style.setProperty('width', mobile ? `${MOBILE_FRAME_WIDTH}px` : '100%', 'important')
+  element.style.setProperty('max-width', mobile ? 'none' : '100%', 'important')
+  element.style.setProperty('height', `${MOBILE_FRAME_HEIGHT}px`, 'important')
+  element.style.setProperty('overflow', mobile ? 'visible' : 'hidden', 'important')
+}
 
 function setWidgetAttributes(element) {
   const { type, publicToken, theme, color, channelId } = RADIO_CONFIG.casterWidget
@@ -33,7 +43,9 @@ function CasterWidget() {
 
     const fitMobilePlayer = () => {
       const active = window.innerWidth < 640
-      const scale = active ? Math.min(1, shell.clientWidth / MOBILE_FRAME_WIDTH) : 1
+      const availableWidth = Math.max(0, shell.clientWidth - MOBILE_HORIZONTAL_PADDING * 2)
+      const scale = active ? Math.min(1, availableWidth / MOBILE_FRAME_WIDTH) : 1
+      sizeWidgetContainer(containerRef.current, active)
       setMobileLayout({ active, scale })
     }
 
@@ -67,6 +79,7 @@ function CasterWidget() {
       if (iframe) {
         iframe.setAttribute('title', 'Ömür FM canlı yayın oynatıcısı')
       }
+      sizeWidgetContainer(container, window.innerWidth < 640)
       clearWatchers()
       setStatus('rendered')
     }
@@ -188,7 +201,7 @@ function CasterWidget() {
         <div
           ref={containerRef}
           className="cstrEmbed absolute left-0 top-0 !h-[170px] !w-[800px] origin-top-left [&_iframe]:!h-[170px] [&_iframe]:!w-[800px] [&_iframe]:!max-w-none sm:inset-x-0 sm:bottom-1 sm:top-auto sm:!w-full sm:[&_iframe]:!w-full"
-          style={mobileLayout.active ? { transform: `scale(${mobileLayout.scale})` } : undefined}
+          style={mobileLayout.active ? { left: MOBILE_HORIZONTAL_PADDING, transform: `scale(${mobileLayout.scale})` } : undefined}
         >
           <a href="https://www.caster.fm" target="_blank" rel="noopener noreferrer">Shoutcast Hosting</a>
           <a href="https://www.caster.fm" target="_blank" rel="noopener noreferrer">Stream Hosting</a>
