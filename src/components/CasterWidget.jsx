@@ -6,15 +6,17 @@ import { useNowPlaying } from '../hooks/useNowPlaying.js'
 const SCRIPT_ID = 'caster-fm-widget-script'
 const RENDER_TIMEOUT_MS = 12000
 const MOBILE_FRAME_WIDTH = 800
-const MOBILE_FRAME_HEIGHT = 170
+const MOBILE_FRAME_HEIGHT = 187
+const DESKTOP_FRAME_HEIGHT = 170
 const MOBILE_HORIZONTAL_PADDING = 6
+const MOBILE_BAR_HEIGHT = 32
 
 function sizeWidgetContainer(element, mobile) {
   if (!element) return
 
   element.style.setProperty('width', mobile ? `${MOBILE_FRAME_WIDTH}px` : '100%', 'important')
   element.style.setProperty('max-width', mobile ? 'none' : '100%', 'important')
-  element.style.setProperty('height', `${MOBILE_FRAME_HEIGHT}px`, 'important')
+  element.style.setProperty('height', `${mobile ? MOBILE_FRAME_HEIGHT : DESKTOP_FRAME_HEIGHT}px`, 'important')
   element.style.setProperty('overflow', mobile ? 'visible' : 'hidden', 'important')
 }
 
@@ -174,8 +176,7 @@ function CasterWidget() {
   return (
     <div
       ref={shellRef}
-      className="caster-widget-shell relative h-[170px] overflow-hidden rounded-full border border-white/10 bg-[#171717] shadow-[inset_0_1px_0_rgba(255,255,255,.12),0_8px_24px_rgba(0,0,0,.35)] sm:h-12"
-      style={mobileLayout.active ? { height: MOBILE_FRAME_HEIGHT * mobileLayout.scale } : undefined}
+      className="caster-widget-shell relative h-8 overflow-hidden rounded-full border border-white/10 bg-[#171717] shadow-[inset_0_1px_0_rgba(255,255,255,.12),0_8px_24px_rgba(0,0,0,.35)] sm:h-12"
     >
       {status === 'loading' && (
         <div className="caster-widget-loading absolute inset-0 z-10 grid place-items-center bg-[#16090e] px-6 text-center" role="status">
@@ -197,11 +198,15 @@ function CasterWidget() {
         </div>
       )}
 
-      <div className="caster-widget-container absolute left-0 top-0 h-[170px] w-full overflow-hidden sm:inset-x-0 sm:bottom-0 sm:top-auto" key={attempt}>
+      <div className="caster-widget-container absolute inset-0 w-full overflow-hidden sm:inset-x-0 sm:bottom-0 sm:top-auto sm:h-[170px]" key={attempt}>
         <div
           ref={containerRef}
-          className="cstrEmbed absolute left-0 top-0 !h-[170px] !w-[800px] origin-top-left [&_iframe]:!h-[170px] [&_iframe]:!w-[800px] [&_iframe]:!max-w-none sm:inset-x-0 sm:bottom-1 sm:top-auto sm:!w-full sm:[&_iframe]:!w-full"
-          style={mobileLayout.active ? { left: MOBILE_HORIZONTAL_PADDING, transform: `scale(${mobileLayout.scale})` } : undefined}
+          className="cstrEmbed absolute left-0 top-0 !h-[187px] !w-[800px] origin-top-left [&_iframe]:!h-[187px] [&_iframe]:!w-[800px] [&_iframe]:!max-w-none sm:inset-x-0 sm:bottom-1 sm:top-auto sm:!h-[170px] sm:!w-full sm:[&_iframe]:!h-[170px] sm:[&_iframe]:!w-full"
+          style={mobileLayout.active ? {
+            left: MOBILE_HORIZONTAL_PADDING,
+            top: MOBILE_BAR_HEIGHT - MOBILE_FRAME_HEIGHT * mobileLayout.scale,
+            transform: `scale(${mobileLayout.scale})`,
+          } : undefined}
         >
           <a href="https://www.caster.fm" target="_blank" rel="noopener noreferrer">Shoutcast Hosting</a>
           <a href="https://www.caster.fm" target="_blank" rel="noopener noreferrer">Stream Hosting</a>
@@ -211,7 +216,10 @@ function CasterWidget() {
 
       {status === 'rendered' && (
         <>
-          <div className="pointer-events-none absolute bottom-0.5 left-[68px] right-[145px] z-20 overflow-hidden rounded-sm bg-[#4b4b4b]/95 py-px text-[7px] font-semibold leading-[10px] text-amber-100 shadow-[0_0_8px_rgba(0,0,0,.65)] sm:bottom-auto sm:left-1/2 sm:right-auto sm:top-[56%] sm:w-[34%] sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-full sm:bg-[#171717]/90 sm:py-1 sm:text-xs sm:leading-normal sm:shadow-[0_0_14px_rgba(0,0,0,.55)]" aria-live="polite" aria-label={`Çalan şarkı: ${nowPlaying}`}>
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-20 flex w-[68px] items-center justify-center bg-[#686868] text-[8px] font-bold italic text-white shadow-[inset_0_1px_0_rgba(255,255,255,.22)] sm:hidden" aria-hidden="true">
+            Caster<span className="rounded-sm bg-rose-600 px-0.5 text-white">.fm</span>
+          </div>
+          <div className="pointer-events-none absolute inset-y-0 left-[68px] right-[65px] z-20 flex items-center overflow-hidden bg-[#5f5f5f] text-[8px] font-semibold leading-[11px] text-amber-100 shadow-[inset_0_1px_0_rgba(255,255,255,.18)] sm:inset-y-auto sm:bottom-auto sm:left-1/2 sm:right-auto sm:top-[56%] sm:block sm:w-[34%] sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-full sm:bg-[#171717]/90 sm:py-1 sm:text-xs sm:leading-normal sm:shadow-[0_0_14px_rgba(0,0,0,.55)]" aria-live="polite" aria-label={`Çalan şarkı: ${nowPlaying}`}>
             <span className="now-playing-marquee__track">
               <span>♫ {nowPlaying}</span>
               <span aria-hidden="true">♫ {nowPlaying}</span>
