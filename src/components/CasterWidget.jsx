@@ -211,7 +211,7 @@ function CasterWidget() {
 
       {status === 'rendered' && (
         <>
-          <div className="pointer-events-none absolute left-1/2 top-[56%] z-20 hidden w-[34%] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full bg-[#171717]/90 py-1 text-xs font-semibold text-amber-100 shadow-[0_0_14px_rgba(0,0,0,.55)] sm:block" aria-live="polite" aria-label={`Çalan şarkı: ${nowPlaying}`}>
+          <div className="pointer-events-none absolute bottom-0.5 left-[68px] right-[145px] z-20 overflow-hidden rounded-sm bg-[#4b4b4b]/95 py-px text-[7px] font-semibold leading-[10px] text-amber-100 shadow-[0_0_8px_rgba(0,0,0,.65)] sm:bottom-auto sm:left-1/2 sm:right-auto sm:top-[56%] sm:w-[34%] sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-full sm:bg-[#171717]/90 sm:py-1 sm:text-xs sm:leading-normal sm:shadow-[0_0_14px_rgba(0,0,0,.55)]" aria-live="polite" aria-label={`Çalan şarkı: ${nowPlaying}`}>
             <span className="now-playing-marquee__track">
               <span>♫ {nowPlaying}</span>
               <span aria-hidden="true">♫ {nowPlaying}</span>
