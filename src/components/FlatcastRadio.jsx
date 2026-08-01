@@ -1,11 +1,28 @@
 import { ExternalLink, Radio, RefreshCw } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { RADIO_CONFIG } from '../config/radio.js'
 
 function FlatcastRadio() {
+  const frameShellRef = useRef(null)
   const [isLoaded, setIsLoaded] = useState(false)
   const [frameKey, setFrameKey] = useState(0)
+  const [frameScale, setFrameScale] = useState(1)
   const { iframeUrl, width, height } = RADIO_CONFIG.flatcast
+
+  useEffect(() => {
+    const frameShell = frameShellRef.current
+    if (!frameShell) return undefined
+
+    const fitFrameToShell = () => {
+      setFrameScale(Math.min(1, frameShell.clientWidth / width))
+    }
+
+    fitFrameToShell()
+    const resizeObserver = new ResizeObserver(fitFrameToShell)
+    resizeObserver.observe(frameShell)
+
+    return () => resizeObserver.disconnect()
+  }, [width])
 
   const refreshRadio = () => {
     setIsLoaded(false)
@@ -37,7 +54,11 @@ function FlatcastRadio() {
         </header>
 
         <div className="bg-black p-2 sm:p-4">
-          <div className="relative mx-auto h-[600px] w-full max-w-[800px] overflow-hidden bg-[#090507] sm:aspect-[4/3] sm:h-auto" style={{ maxWidth: width }}>
+          <div
+            ref={frameShellRef}
+            className="relative mx-auto w-full overflow-hidden bg-[#090507]"
+            style={{ height: height * frameScale, maxWidth: width }}
+          >
             {!isLoaded && (
               <div className="absolute inset-0 z-10 grid place-items-center bg-[#090507]" role="status">
                 <div className="flex items-center gap-3 text-sm text-stone-300">
@@ -56,7 +77,8 @@ function FlatcastRadio() {
               allowFullScreen
               referrerPolicy="strict-origin-when-cross-origin"
               onLoad={() => setIsLoaded(true)}
-              className="absolute inset-0 size-full border-0"
+              className="absolute left-0 top-0 border-0"
+              style={{ height, width, transform: `scale(${frameScale})`, transformOrigin: 'top left' }}
             />
           </div>
         </div>
