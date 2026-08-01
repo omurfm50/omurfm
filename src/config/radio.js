@@ -2,13 +2,19 @@ export const RADIO_CONFIG = {
   name: "Ömür FM",
   slogan: "Kalplerin Buluştuğu Radyo",
 
-  streamUrl: "https://sapircast.caster.fm:17681/BHufv?token=3ec856e02e682b10b5907facd25efed4",
+  streamUrl: "",
   metadataUrl: "/api/radio-status",
+
+  flatcast: {
+    iframeUrl: "https://flatcastx.com/sid/1567",
+    width: 800,
+    height: 600
+  },
 
   casterWidget: {
     publicToken: "79ea291b-69b6-42ba-a9e7-378a6c72cc54",
     type: "newStreamPlayer",
-    theme: "light",
+    theme: "dark",
     color: "e81e4d",
     channelId: "",
     scriptUrl: "https://cdn.cloud.caster.fm/widgets/embed.js"

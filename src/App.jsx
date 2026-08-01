@@ -1,10 +1,8 @@
 import { useCallback, useState } from 'react'
 import DjSection from './components/DjSection.jsx'
-import Footer from './components/Footer.jsx'
 import Header from './components/Header.jsx'
 import Modal from './components/Modal.jsx'
 import RadioBanner from './components/RadioBanner.jsx'
-import RoomLayout from './components/RoomLayout.jsx'
 import ScheduleSection from './components/ScheduleSection.jsx'
 import StickyRadioBar from './components/StickyRadioBar.jsx'
 
@@ -19,28 +17,13 @@ function App() {
 
       <main id="main-content" className="mx-auto w-full max-w-[1240px] px-3 sm:px-5">
         <RadioBanner />
-        <RoomLayout onOpenRules={() => setActiveModal('rules')} />
         <StickyRadioBar />
       </main>
-      <Footer />
-
       <Modal isOpen={activeModal === 'djs'} onClose={closeModal} eyebrow="Mikrofonun Arkasındakiler" title="DJ Kadrosu">
         <DjSection compact />
       </Modal>
       <Modal isOpen={activeModal === 'schedule'} onClose={closeModal} eyebrow="Haftalık Program" title="Yayın Akışı">
         <ScheduleSection compact />
-      </Modal>
-      <Modal isOpen={activeModal === 'rules'} onClose={closeModal} eyebrow="Birlikte Daha Güzel" title="Sohbet Kuralları">
-        <div className="space-y-4 text-[15px] leading-7 text-stone-300">
-          <p>Ömür FM sohbet odası dostluk, saygı ve güzel müzik etrafında buluşmak içindir.</p>
-          <ol className="list-decimal space-y-3 pl-5">
-            <li>Diğer dinleyicilere ve yayıncılara karşı saygılı olun.</li>
-            <li>Kişisel bilgilerinizi ve özel iletişim bilgilerinizi paylaşmayın.</li>
-            <li>Tekrarlayan mesaj, reklam ve rahatsız edici içerik göndermeyin.</li>
-            <li>Müzik istekleri için Şarkı İste alanını kullanın.</li>
-          </ol>
-          <p className="border-l-2 border-rose-500 bg-rose-950/25 px-4 py-3 text-sm text-rose-100">Oda yönetimi, herkes için huzurlu bir ortam sağlamak amacıyla bu kuralları uygular.</p>
-        </div>
       </Modal>
     </div>
   )
