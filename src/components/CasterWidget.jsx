@@ -5,6 +5,8 @@ import { useNowPlaying } from '../hooks/useNowPlaying.js'
 
 const SCRIPT_ID = 'caster-fm-widget-script'
 const RENDER_TIMEOUT_MS = 12000
+const MOBILE_FRAME_WIDTH = 800
+const MOBILE_FRAME_HEIGHT = 170
 
 function setWidgetAttributes(element) {
   const { type, publicToken, theme, color, channelId } = RADIO_CONFIG.casterWidget
@@ -18,10 +20,33 @@ function setWidgetAttributes(element) {
 }
 
 function CasterWidget() {
+  const shellRef = useRef(null)
   const containerRef = useRef(null)
   const [status, setStatus] = useState('loading')
   const [attempt, setAttempt] = useState(0)
+  const [mobileLayout, setMobileLayout] = useState({ active: false, scale: 1 })
   const nowPlaying = useNowPlaying()
+
+  useEffect(() => {
+    const shell = shellRef.current
+    if (!shell) return undefined
+
+    const fitMobilePlayer = () => {
+      const active = window.innerWidth < 640
+      const scale = active ? Math.min(1, shell.clientWidth / MOBILE_FRAME_WIDTH) : 1
+      setMobileLayout({ active, scale })
+    }
+
+    fitMobilePlayer()
+    const resizeObserver = new ResizeObserver(fitMobilePlayer)
+    resizeObserver.observe(shell)
+    window.addEventListener('resize', fitMobilePlayer)
+
+    return () => {
+      resizeObserver.disconnect()
+      window.removeEventListener('resize', fitMobilePlayer)
+    }
+  }, [])
 
   useEffect(() => {
     const container = containerRef.current
@@ -134,7 +159,11 @@ function CasterWidget() {
   }
 
   return (
-    <div className="caster-widget-shell relative min-h-52 overflow-hidden rounded-2xl border border-amber-200/15 bg-white shadow-inner sm:h-12 sm:min-h-0 sm:rounded-full sm:border-white/10 sm:bg-[#171717] sm:shadow-[inset_0_1px_0_rgba(255,255,255,.12),0_8px_24px_rgba(0,0,0,.35)]">
+    <div
+      ref={shellRef}
+      className="caster-widget-shell relative h-[170px] overflow-hidden rounded-full border border-white/10 bg-[#171717] shadow-[inset_0_1px_0_rgba(255,255,255,.12),0_8px_24px_rgba(0,0,0,.35)] sm:h-12"
+      style={mobileLayout.active ? { height: MOBILE_FRAME_HEIGHT * mobileLayout.scale } : undefined}
+    >
       {status === 'loading' && (
         <div className="caster-widget-loading absolute inset-0 z-10 grid place-items-center bg-[#16090e] px-6 text-center" role="status">
           <div className="flex items-center justify-center gap-3">
@@ -155,8 +184,12 @@ function CasterWidget() {
         </div>
       )}
 
-      <div className="caster-widget-container w-full sm:absolute sm:inset-x-0 sm:bottom-0 sm:h-[170px] sm:overflow-hidden sm:overscroll-none" key={attempt}>
-        <div ref={containerRef} className="cstrEmbed w-full [&_iframe]:min-h-52 sm:absolute sm:inset-x-0 sm:bottom-1 sm:!h-[170px] sm:[&_iframe]:!h-[170px] sm:[&_iframe]:min-h-0">
+      <div className="caster-widget-container absolute left-0 top-0 h-[170px] w-full overflow-hidden sm:inset-x-0 sm:bottom-0 sm:top-auto" key={attempt}>
+        <div
+          ref={containerRef}
+          className="cstrEmbed absolute left-0 top-0 !h-[170px] !w-[800px] origin-top-left [&_iframe]:!h-[170px] [&_iframe]:!w-[800px] [&_iframe]:!max-w-none sm:inset-x-0 sm:bottom-1 sm:top-auto sm:!w-full sm:[&_iframe]:!w-full"
+          style={mobileLayout.active ? { transform: `scale(${mobileLayout.scale})` } : undefined}
+        >
           <a href="https://www.caster.fm" target="_blank" rel="noopener noreferrer">Shoutcast Hosting</a>
           <a href="https://www.caster.fm" target="_blank" rel="noopener noreferrer">Stream Hosting</a>
           <a href="https://www.caster.fm" target="_blank" rel="noopener noreferrer">Radio Server Hosting</a>
