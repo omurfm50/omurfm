@@ -38,7 +38,7 @@ function ChattersNetRoom() {
             referrerPolicy="strict-origin-when-cross-origin"
             onLoad={() => setFrameStatus('loaded')}
             onError={handleFrameError}
-            className="block h-[620px] w-full border-0 md:h-[680px] xl:h-[700px]"
+            className="-mt-1 block h-[624px] w-full border-0 md:h-[684px] xl:h-[704px]"
           />
         )}
       </div>
