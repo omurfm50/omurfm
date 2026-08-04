@@ -1,38 +1,21 @@
-import { RefreshCw, Users } from 'lucide-react'
+import { RefreshCw } from 'lucide-react'
 import { useState } from 'react'
 import { RADIO_CONFIG } from '../config/radio.js'
 
-function getCountLabel(userCount, isLoading) {
-  if (isLoading && userCount === null) return 'Kullanıcı sayısı yükleniyor'
-  if (typeof userCount === 'number') return `${userCount} kişi sohbette`
-  return 'Kullanıcı bilgisi alınamadı'
-}
-
-function ChattersNetRoom({ userCount, isLoading, error, refreshUserCount }) {
+function ChattersNetRoom() {
   const [frameStatus, setFrameStatus] = useState('loading')
   const [frameKey, setFrameKey] = useState(0)
 
   const reloadChat = () => {
     setFrameStatus('loading')
     setFrameKey((currentKey) => currentKey + 1)
-    refreshUserCount()
   }
 
   // Bazı tarayıcılar iframe ağ hatalarını onError olayıyla bildirmeyebilir.
   const handleFrameError = () => setFrameStatus('error')
 
   return (
-    <section aria-labelledby="chattersnet-room-title" className="overflow-hidden border-y border-rose-300/15 bg-[#0e080a] shadow-2xl shadow-black/30 sm:border">
-      <div className="border-b border-white/[0.08] bg-[#160a0f] px-4 py-3.5 sm:px-5">
-        <div className="flex min-w-0 items-center gap-3">
-          <span className={`size-2.5 shrink-0 rounded-full ${typeof userCount === 'number' ? 'bg-emerald-400' : isLoading ? 'bg-amber-300' : 'bg-rose-400'}`} aria-hidden="true" />
-          <div className="min-w-0">
-            <h2 id="chattersnet-room-title" className="truncate text-base font-semibold text-white sm:text-lg">{RADIO_CONFIG.chat.roomName}</h2>
-            <p className="mt-0.5 flex items-center gap-1.5 text-xs text-stone-400" aria-live="polite"><Users size={13} aria-hidden="true" /> {getCountLabel(userCount, isLoading)}{error && userCount !== null ? ' · Son başarılı değer' : ''}</p>
-          </div>
-        </div>
-      </div>
-
+    <section aria-label="Canlı sohbet odası" className="overflow-hidden border-y border-rose-300/15 bg-[#0e080a] shadow-2xl shadow-black/30 sm:border">
       <div className="relative overflow-hidden bg-[#090507]">
         {frameStatus === 'loading' && (
           <div className="absolute inset-0 z-10 grid place-items-center bg-[#10070a]" role="status">
