@@ -23,14 +23,29 @@ function sizeWidgetContainer(element, mobile) {
 }
 
 function setWidgetAttributes(element) {
-  const { type, publicToken, theme, color, channelId } = RADIO_CONFIG.casterWidget
+  const { type, publicToken, theme, color, channelId, autoplay } = RADIO_CONFIG.casterWidget
 
   element.setAttribute('data-type', type)
   element.setAttribute('data-publicToken', publicToken)
   element.setAttribute('data-theme', theme)
   element.setAttribute('data-color', color)
   element.setAttribute('data-channelId', channelId)
+  element.setAttribute('data-autoplay', String(autoplay))
   element.setAttribute('data-rendered', 'false')
+}
+
+function configurePlayerIframe(iframe) {
+  if (!iframe) return
+
+  iframe.setAttribute('title', 'Ömür FM canlı yayın oynatıcısı')
+  if (!RADIO_CONFIG.casterWidget.autoplay) return
+
+  iframe.setAttribute('allow', 'autoplay')
+  const playerUrl = new URL(iframe.src)
+  if (playerUrl.searchParams.get('autoplay') !== '1') {
+    playerUrl.searchParams.set('autoplay', '1')
+    iframe.src = playerUrl.toString()
+  }
 }
 
 function CasterWidget() {
@@ -82,9 +97,7 @@ function CasterWidget() {
     const markRendered = () => {
       if (cancelled) return
       const iframe = container.querySelector('iframe')
-      if (iframe) {
-        iframe.setAttribute('title', 'Ömür FM canlı yayın oynatıcısı')
-      }
+      configurePlayerIframe(iframe)
       sizeWidgetContainer(container, window.innerWidth < 640)
       clearWatchers()
       setStatus('rendered')
