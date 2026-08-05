@@ -218,7 +218,7 @@ function CasterWidget() {
       <div className="caster-widget-container absolute inset-0 w-full overflow-hidden sm:inset-x-0 sm:bottom-0 sm:top-auto sm:h-[170px]" key={attempt}>
         <div
           ref={containerRef}
-          className="cstrEmbed absolute left-0 top-0 !h-[187px] !w-[800px] origin-top-left [&_iframe]:!h-[187px] [&_iframe]:!w-[800px] [&_iframe]:!max-w-none sm:inset-x-0 sm:bottom-1 sm:top-auto sm:!h-[170px] sm:!w-full sm:[&_iframe]:!h-[170px] sm:[&_iframe]:!w-full"
+          className="cstrEmbed absolute left-0 top-0 !h-[187px] !w-[800px] origin-top-left [&_iframe]:!h-[187px] [&_iframe]:!w-[800px] [&_iframe]:!max-w-none sm:inset-x-0 sm:bottom-[6px] sm:top-auto sm:!h-[170px] sm:!w-full sm:[&_iframe]:!h-[170px] sm:[&_iframe]:!w-full"
           style={mobileLayout.active ? {
             left: mobileLayout.left,
             top: MOBILE_BAR_HEIGHT - MOBILE_FRAME_HEIGHT * mobileLayout.scale,
@@ -236,7 +236,7 @@ function CasterWidget() {
           <div className="pointer-events-none absolute inset-y-0 left-0 z-20 flex w-[68px] items-center justify-center bg-[#686868] text-[8px] font-bold italic text-white shadow-[inset_0_1px_0_rgba(255,255,255,.22)] sm:hidden" aria-hidden="true">
             Caster<span className="rounded-sm bg-rose-600 px-0.5 text-white">.fm</span>
           </div>
-          <div className="pointer-events-none absolute inset-y-0 left-[68px] right-[82px] z-20 flex items-center overflow-hidden bg-[#5f5f5f] text-[8px] font-semibold leading-[11px] text-amber-100 shadow-[inset_0_1px_0_rgba(255,255,255,.18)] sm:inset-y-auto sm:bottom-auto sm:left-1/2 sm:right-auto sm:top-[56%] sm:block sm:w-[34%] sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-full sm:bg-[#171717]/90 sm:py-1 sm:text-xs sm:leading-normal sm:shadow-[0_0_14px_rgba(0,0,0,.55)]" aria-live="polite" aria-label={`Çalan şarkı: ${nowPlaying}`}>
+          <div className="pointer-events-none absolute inset-y-0 left-[68px] right-[82px] z-20 flex items-center overflow-hidden bg-[#5f5f5f] text-[8px] font-semibold leading-[11px] text-amber-100 shadow-[inset_0_1px_0_rgba(255,255,255,.18)] sm:inset-y-auto sm:bottom-auto sm:left-1/2 sm:right-auto sm:top-1/2 sm:block sm:w-[34%] sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-full sm:bg-[#171717]/90 sm:py-1 sm:text-xs sm:leading-normal sm:shadow-[0_0_14px_rgba(0,0,0,.55)]" aria-live="polite" aria-label={`Çalan şarkı: ${nowPlaying}`}>
             <span className="now-playing-marquee__track">
               <span>♫ {nowPlaying}</span>
               <span aria-hidden="true">♫ {nowPlaying}</span>
