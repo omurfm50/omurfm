@@ -11,6 +11,7 @@ export const RADIO_CONFIG = {
     theme: "dark",
     color: "e81e4d",
     channelId: "",
+    autoplay: true,
     scriptUrl: "https://cdn.cloud.caster.fm/widgets/embed.js"
   },
 
