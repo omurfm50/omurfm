@@ -240,7 +240,7 @@ function CasterWidget() {
           <div className="pointer-events-none absolute inset-y-0 left-0 z-20 flex w-[68px] items-center justify-center bg-[#686868] text-[8px] font-bold italic text-white shadow-[inset_0_1px_0_rgba(255,255,255,.22)] sm:hidden" aria-hidden="true">
             Caster<span className="rounded-sm bg-rose-600 px-0.5 text-white">.fm</span>
           </div>
-          <div className="pointer-events-none absolute inset-y-0 left-[68px] right-[82px] z-20 flex items-center overflow-hidden bg-[#5f5f5f] text-[8px] font-semibold leading-[11px] text-amber-100 shadow-[inset_0_1px_0_rgba(255,255,255,.18)] sm:inset-y-auto sm:bottom-auto sm:left-[20%] sm:right-[355px] sm:top-1/2 sm:block sm:w-auto sm:translate-x-0 sm:-translate-y-1/2 sm:rounded-full sm:bg-[#171717]/90 sm:py-1 sm:text-xs sm:leading-normal sm:shadow-[0_0_14px_rgba(0,0,0,.55)]" aria-live="polite" aria-label={`Çalan şarkı: ${nowPlaying}`}>
+          <div className="pointer-events-none absolute inset-y-0 left-[68px] right-[82px] z-20 flex items-center overflow-hidden bg-[#5f5f5f] text-[8px] font-semibold leading-[11px] text-amber-100 shadow-[inset_0_1px_0_rgba(255,255,255,.18)] sm:inset-y-auto sm:bottom-auto sm:left-[22%] sm:right-[355px] sm:top-1/2 sm:block sm:w-auto sm:translate-x-0 sm:-translate-y-1/2 sm:rounded-full sm:bg-[#171717]/90 sm:py-1 sm:text-xs sm:leading-normal sm:shadow-[0_0_14px_rgba(0,0,0,.55)]" aria-live="polite" aria-label={`Çalan şarkı: ${nowPlaying}`}>
             <span className="now-playing-marquee__track">
               <span>♫ {nowPlaying}</span>
               <span aria-hidden="true">♫ {nowPlaying}</span>
