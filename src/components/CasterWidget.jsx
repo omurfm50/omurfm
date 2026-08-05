@@ -38,6 +38,9 @@ function configurePlayerIframe(iframe) {
   if (!iframe) return
 
   iframe.setAttribute('title', 'Ömür FM canlı yayın oynatıcısı')
+  iframe.setAttribute('scrolling', 'no')
+  iframe.style.setProperty('overflow', 'hidden')
+  iframe.style.setProperty('overscroll-behavior', 'none')
   if (!RADIO_CONFIG.casterWidget.autoplay) return
 
   iframe.setAttribute('allow', 'autoplay')
@@ -233,6 +236,7 @@ function CasterWidget() {
 
       {status === 'rendered' && (
         <>
+          <span className="absolute inset-y-0 left-0 right-[31%] z-[25] hidden cursor-default sm:block" aria-hidden="true" />
           <div className="pointer-events-none absolute inset-y-0 left-0 z-20 flex w-[68px] items-center justify-center bg-[#686868] text-[8px] font-bold italic text-white shadow-[inset_0_1px_0_rgba(255,255,255,.22)] sm:hidden" aria-hidden="true">
             Caster<span className="rounded-sm bg-rose-600 px-0.5 text-white">.fm</span>
           </div>
