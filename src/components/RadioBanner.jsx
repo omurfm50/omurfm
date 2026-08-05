@@ -49,8 +49,8 @@ function RadioBanner() {
             </p>
             <p className="mt-1 truncate font-semibold text-white md:mt-2 md:text-xl">{currentDj}</p>
             <p className="truncate text-sm text-stone-400 md:mt-1">{RADIO_CONFIG.currentDj.show}</p>
-            <div className="radio-equalizer mt-4 hidden h-4 items-end gap-1 md:flex" aria-hidden="true">
-              {[7, 13, 9, 16, 11, 6, 14, 9, 12, 5].map((height, index) => (
+            <div className="radio-equalizer mt-4 hidden h-6 items-end gap-[3px] md:flex" aria-hidden="true">
+              {[10, 19, 14, 24, 16, 9, 21, 13, 18, 8, 23, 15, 20, 11, 17].map((height, index) => (
                 <span
                   key={index}
                   className="radio-equalizer__bar w-1 rounded-full bg-gradient-to-t from-rose-700 to-rose-300/90"
