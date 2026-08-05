@@ -237,7 +237,7 @@ function CasterWidget() {
       {status === 'rendered' && (
         <>
           <span className="absolute inset-y-0 left-0 right-[31%] z-[25] hidden cursor-default sm:block" aria-hidden="true" />
-          <span className="pointer-events-none absolute right-[273px] top-1/2 z-[22] hidden h-4 w-11 -translate-y-1/2 rounded-r-full bg-[#717276] sm:block" aria-hidden="true" />
+          <span className="pointer-events-none absolute right-[273px] top-1/2 z-[22] hidden h-1 w-11 -translate-y-1/2 rounded-r-full bg-[#717276] sm:block" aria-hidden="true" />
           <div className="pointer-events-none absolute inset-y-0 left-0 z-20 flex w-[68px] items-center justify-center bg-[#686868] text-[8px] font-bold italic text-white shadow-[inset_0_1px_0_rgba(255,255,255,.22)] sm:hidden" aria-hidden="true">
             Caster<span className="rounded-sm bg-rose-600 px-0.5 text-white">.fm</span>
           </div>
