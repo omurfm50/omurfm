@@ -2,9 +2,16 @@ import CasterWidget from './CasterWidget.jsx'
 
 function StickyRadioBar() {
   return (
-    <section id="canli-yayin" aria-label="Ömür FM canlı yayın oynatıcısı" className="scroll-mt-20 py-6">
-      <CasterWidget />
-    </section>
+    <>
+      <div className="hidden h-[72px] sm:block" aria-hidden="true" />
+      <section
+        id="canli-yayin"
+        aria-label="Ömür FM canlı yayın oynatıcısı"
+        className="scroll-mt-20 py-6 sm:fixed sm:inset-x-5 sm:bottom-3 sm:z-50 sm:mx-auto sm:max-w-[1200px] sm:py-0"
+      >
+        <CasterWidget />
+      </section>
+    </>
   )
 }
 
