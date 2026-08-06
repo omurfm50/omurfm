@@ -17,10 +17,6 @@ function ChattersNetRoom() {
   return (
     <section aria-label="Canlı sohbet odası" className="overflow-hidden border-y border-rose-300/15 bg-[#0e080a] shadow-2xl shadow-black/30 sm:border">
       <div className="relative overflow-hidden bg-[#090507]">
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-y-0 left-[40%] z-20 hidden w-[5px] bg-[#10090b] min-[851px]:block"
-        />
         {frameStatus === 'loading' && (
           <div className="absolute inset-0 z-10 grid place-items-center bg-[#10070a]" role="status">
             <div className="text-center"><span className="mx-auto block size-9 animate-spin rounded-full border-2 border-rose-300/20 border-t-rose-300 motion-reduce:animate-none" aria-hidden="true" /><p className="mt-4 text-sm text-stone-300">Sohbet odası yükleniyor…</p></div>
