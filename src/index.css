@@ -26,7 +26,8 @@
 
 .now-playing-marquee__track > span {
   min-width: 322px;
-  padding-inline: 1.5rem;
+  padding-left: calc(1.5rem + 15px);
+  padding-right: 0;
   text-align: center;
   white-space: nowrap;
 }
