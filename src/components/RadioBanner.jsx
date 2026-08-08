@@ -33,6 +33,12 @@ function RadioBanner() {
             </div>
           </div>
           <p className="mt-2 text-base text-stone-300 sm:text-lg md:mt-4 md:text-xl md:font-light md:tracking-wide md:text-stone-200">{RADIO_CONFIG.slogan}</p>
+          <div className="dj-marquee mt-3 overflow-hidden rounded-full border border-white/10 bg-black/65 py-1.5">
+            <span className="dj-marquee__track">
+              <span>♫ DJ SeLoCaN ♫</span>
+              <span aria-hidden="true">♫ DJ SeLoCaN ♫</span>
+            </span>
+          </div>
         </div>
 
         <div className="hidden items-center gap-4 border-l-2 border-rose-500/60 bg-black/20 px-4 py-3 backdrop-blur-sm sm:flex sm:min-w-64 md:relative md:min-h-40 md:overflow-hidden md:border md:border-white/10 md:bg-black/25 md:px-7 md:py-6 md:shadow-[0_24px_60px_rgba(0,0,0,0.28)] md:backdrop-blur-md">

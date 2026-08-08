@@ -28,6 +28,28 @@
   margin-left: -15px;
 }
 
+.dj-marquee__track {
+  display: flex;
+  width: max-content;
+  animation: dj-scroll 12s linear infinite;
+}
+
+.dj-marquee__track > span {
+  min-width: 240px;
+  padding-inline: 1.5rem;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fca5a5;
+}
+
+@keyframes dj-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 .now-playing-marquee__track > span {
   min-width: 322px;
   padding-inline: 1.5rem;
