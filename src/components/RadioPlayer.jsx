@@ -54,7 +54,7 @@ function Html5Player() {
         </label>
       </div>
 
-      <div className="now-playing-marquee mt-1.5 overflow-hidden rounded-full border border-white/10 bg-black/65 py-1 text-[11px] font-semibold text-amber-200" aria-live="polite" aria-label={`Çalan şarkı: ${nowPlaying}`}>
+      <div className="now-playing-marquee mt-1.5 overflow-hidden rounded-full border border-white/10 bg-black/65 py-1 text-[12px] font-semibold text-amber-200" aria-live="polite" aria-label={`Çalan şarkı: ${nowPlaying}`}>
         <span className="now-playing-marquee__track">
           <span>♫ {nowPlaying}</span>
           <span aria-hidden="true">♫ {nowPlaying}</span>
