@@ -1,6 +1,7 @@
-import { DJS } from '../data/djs.js'
 import DjCard from './DjCard.jsx'
 import SectionTitle from './SectionTitle.jsx'
+
+const DJS = [] // DJ verileri API'den gelecek
 
 function DjSection({ compact = false }) {
   return (

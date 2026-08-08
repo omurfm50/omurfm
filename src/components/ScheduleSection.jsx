@@ -1,8 +1,8 @@
 import { Clock3, RadioTower } from 'lucide-react'
 import { useState } from 'react'
-import { SCHEDULE } from '../data/schedule.js'
 import SectionTitle from './SectionTitle.jsx'
 
+const SCHEDULE = {} // Yayın akışı verileri API'den gelecek
 const DAYS = Object.keys(SCHEDULE)
 
 function ScheduleSection({ compact = false }) {
