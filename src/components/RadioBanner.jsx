@@ -33,11 +33,6 @@ function RadioBanner() {
             </div>
           </div>
           <p className="mt-2 text-base text-stone-300 sm:text-lg md:mt-4 md:text-xl md:font-light md:tracking-wide md:text-stone-200">{RADIO_CONFIG.slogan}</p>
-          <div className="mt-7 hidden items-center gap-5 text-xs font-medium uppercase tracking-[0.16em] text-stone-400 md:flex">
-            <span className="inline-flex items-center gap-2"><Headphones size={15} className="text-rose-300" aria-hidden="true" /> 7/24 Kesintisiz Müzik</span>
-            <span className="h-3 w-px bg-white/15" aria-hidden="true" />
-            <span className="text-amber-200/80">Kalbinin Frekansı</span>
-          </div>
         </div>
 
         <div className="hidden items-center gap-4 border-l-2 border-rose-500/60 bg-black/20 px-4 py-3 backdrop-blur-sm sm:flex sm:min-w-64 md:relative md:min-h-40 md:overflow-hidden md:border md:border-white/10 md:bg-black/25 md:px-7 md:py-6 md:shadow-[0_24px_60px_rgba(0,0,0,0.28)] md:backdrop-blur-md">
