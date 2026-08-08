@@ -24,6 +24,10 @@
   animation: now-playing-scroll 16s linear infinite;
 }
 
+.now-playing-marquee {
+  margin-left: -15px;
+}
+
 .now-playing-marquee__track > span {
   min-width: 322px;
   padding-inline: 1.5rem;
