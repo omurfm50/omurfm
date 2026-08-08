@@ -6,7 +6,7 @@ function RadioBanner() {
   const { currentDj } = useRadioMetadata()
 
   return (
-    <section id="top" aria-labelledby="radio-banner-title" className="relative min-h-[220px] overflow-hidden border-x border-b border-white/[0.08] bg-[#19070d] sm:min-h-[250px] md:min-h-[300px] md:border-white/[0.1] md:bg-[#16070c]">
+    <section id="top" aria-labelledby="radio-banner-title" className="relative min-h-[200px] overflow-hidden border-x border-b border-white/[0.08] bg-[#19070d] sm:min-h-[220px] md:min-h-[260px] md:border-white/[0.1] md:bg-[#16070c]">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_30%,rgba(225,29,72,0.25),transparent_28%),radial-gradient(circle_at_82%_55%,rgba(251,191,36,0.09),transparent_24%),linear-gradient(120deg,rgba(0,0,0,0.15),rgba(69,10,29,0.5),rgba(0,0,0,0.45))] md:bg-[radial-gradient(circle_at_18%_45%,rgba(225,29,72,0.27),transparent_32%),radial-gradient(circle_at_78%_50%,rgba(245,158,11,0.12),transparent_25%),linear-gradient(112deg,rgba(0,0,0,0.08),rgba(69,10,29,0.44)_52%,rgba(0,0,0,0.55))]" />
       <div className="pointer-events-none absolute inset-x-0 top-0 hidden h-px bg-gradient-to-r from-transparent via-rose-400/60 to-transparent md:block" />
       <div className="pointer-events-none absolute -left-24 top-1/2 hidden size-72 -translate-y-1/2 rounded-full border border-rose-300/[0.08] md:block" />
@@ -15,7 +15,7 @@ function RadioBanner() {
       <Music2 className="pointer-events-none absolute right-[9%] top-8 size-20 rotate-12 text-amber-200/[0.08] md:right-[4%] md:top-5 md:size-24 md:text-amber-200/[0.055]" strokeWidth={0.8} aria-hidden="true" />
       <Sparkles className="pointer-events-none absolute left-[48%] top-9 text-rose-200/15 md:left-[51%] md:top-12 md:size-7" aria-hidden="true" />
 
-      <div className="relative grid min-h-[220px] items-center gap-6 px-5 py-8 sm:min-h-[250px] sm:px-8 md:min-h-[300px] md:grid-cols-[minmax(0,1fr)_20rem] md:gap-12 md:px-12 md:py-10 lg:grid-cols-[minmax(0,1fr)_22rem] lg:px-16">
+      <div className="relative grid min-h-[200px] items-center gap-6 px-5 py-8 sm:min-h-[220px] sm:px-8 md:min-h-[260px] md:grid-cols-[minmax(0,1fr)_20rem] md:gap-12 md:px-12 md:py-10 lg:grid-cols-[minmax(0,1fr)_22rem] lg:px-16">
         <div>
           <div className="inline-flex items-center gap-2 border border-rose-300/20 bg-black/25 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.24em] text-rose-200 md:rounded-full md:border-rose-300/25 md:bg-rose-950/30 md:px-4 md:py-2 md:text-[11px]">
             <span className="relative hidden size-2 md:inline-flex">
