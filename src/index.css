@@ -19,7 +19,8 @@
 }
 
 .now-playing-marquee {
-  margin-left: -15px;
+  width: 100%;
+  margin-inline: auto;
 }
 
 .now-playing-marquee__track,
@@ -39,7 +40,7 @@
   padding-inline: 1.5rem;
   text-align: center;
   white-space: nowrap;
-  transform: translate(-100%, -50%);
+  transform: translate(0, -50%);
 }
 
 .now-playing-marquee__track > span:first-child {
@@ -60,13 +61,13 @@
 
 @keyframes now-playing-scroll {
   from {
-    left: 0;
-    transform: translate(-100%, -50%);
+    left: 100%;
+    transform: translate(0, -50%);
   }
 
   to {
-    left: 100%;
-    transform: translate(0, -50%);
+    left: 0;
+    transform: translate(-100%, -50%);
   }
 }
 
