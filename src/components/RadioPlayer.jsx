@@ -93,9 +93,9 @@ function RadioPlayer() {
       </div>
 
       {hasCasterWidget ? (
-        <div className="p-3 sm:p-4">
+        <div className="p-2 sm:p-3">
           <CasterWidget />
-          <p className="px-2 pb-1 pt-4 text-center text-xs leading-5 text-stone-400">Yayını başlatmak için oynatıcının içindeki oynat düğmesine dokunun.</p>
+          <p className="px-2 pb-1 pt-2 text-center text-xs leading-5 text-stone-400">Yayını başlatmak için oynatıcının içindeki oynat düğmesine dokunun.</p>
         </div>
       ) : (
         <p className="m-5 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-8 text-center text-sm text-stone-400">Yayın bağlantısı henüz eklenmedi.</p>
