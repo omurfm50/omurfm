@@ -32,15 +32,13 @@ function RadioBanner() {
               <p className="truncate text-xs text-stone-400">{RADIO_CONFIG.currentDj.show}</p>
             </div>
           </div>
-          <p className="mt-2 text-base text-stone-300 sm:text-lg md:mt-4 md:text-xl md:font-light md:tracking-wide md:text-stone-200">{RADIO_CONFIG.slogan}</p>
-        </div>
-
-        <div className="dj-marquee col-span-full -mx-5 overflow-hidden border-t border-white/10 bg-black/40 py-1.5 px-5 sm:-mx-8 sm:px-8 md:col-span-2 md:-mx-12 md:px-12">
-          <span className="dj-marquee__track">
-            <span>♫ DJ SeLoCaN ♫</span>
-            <span aria-hidden="true">♫ DJ SeLoCaN ♫</span>
-          </span>
+          <div className="dj-marquee absolute inset-x-0 bottom-10 overflow-hidden border-y border-white/10 bg-black/40 py-1.5">
+            <span className="dj-marquee__track">
+              <span>♫ DJ SeLoCaN ♫</span>
+              <span aria-hidden="true">♫ DJ SeLoCaN ♫</span>
+            </span>
           </div>
+          <p className="mt-2 text-base text-stone-300 sm:text-lg md:mt-4 md:text-xl md:font-light md:tracking-wide md:text-stone-200">{RADIO_CONFIG.slogan}</p>
         </div>
 
         <div className="hidden items-center gap-4 border-l-2 border-rose-500/60 bg-black/20 px-4 py-3 backdrop-blur-sm sm:flex sm:min-w-64 md:relative md:min-h-40 md:overflow-hidden md:border md:border-white/10 md:bg-black/25 md:px-7 md:py-6 md:shadow-[0_24px_60px_rgba(0,0,0,0.28)] md:backdrop-blur-md">
