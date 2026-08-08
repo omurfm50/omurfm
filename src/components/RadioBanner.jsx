@@ -32,7 +32,7 @@ function RadioBanner() {
               <p className="truncate text-xs text-stone-400">{RADIO_CONFIG.currentDj.show}</p>
             </div>
           </div>
-          <div className="dj-marquee absolute inset-x-0 bottom-10 overflow-hidden border-y border-white/10 bg-black/40 py-1.5">
+          <div className="dj-marquee absolute left-5 right-5 bottom-0 overflow-hidden border-y border-white/10 bg-black/40 py-1.5 sm:left-8 sm:right-8 md:left-12 md:right-auto md:w-[calc(100%-12rem)] md:bottom-6">
             <span className="dj-marquee__track">
               <span>♫ DJ SeLoCaN ♫</span>
               <span aria-hidden="true">♫ DJ SeLoCaN ♫</span>
