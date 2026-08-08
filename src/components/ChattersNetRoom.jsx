@@ -23,7 +23,7 @@ function ChattersNetRoom() {
           </div>
         )}
         {frameStatus === 'error' ? (
-          <div className="grid h-[620px] place-items-center px-5 text-center md:h-[680px] xl:h-[700px]" role="alert">
+          <div className="grid h-[620px] place-items-center px-5 text-center md:h-[660px]" role="alert">
             <div><p className="text-sm text-rose-200">Sohbet odası yüklenemedi.</p><button type="button" onClick={reloadChat} className="mt-4 inline-flex items-center gap-2 bg-rose-700 px-4 py-2.5 text-sm font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"><RefreshCw size={16} aria-hidden="true" /> Yeniden Dene</button></div>
           </div>
         ) : (
@@ -38,7 +38,7 @@ function ChattersNetRoom() {
             referrerPolicy="strict-origin-when-cross-origin"
             onLoad={() => setFrameStatus('loaded')}
             onError={handleFrameError}
-            className="-mt-1 block h-[624px] w-full border-0 md:h-[684px] xl:h-[704px]"
+            className="-mt-1 block h-[624px] w-full border-0 md:h-[664px]"
           />
         )}
       </div>
