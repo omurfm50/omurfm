@@ -31,7 +31,7 @@
 .dj-marquee__track {
   display: flex;
   width: max-content;
-  animation: dj-scroll 12s linear infinite;
+  animation: dj-scroll 12s linear infinite reverse;
 }
 
 .dj-marquee__track > span {
